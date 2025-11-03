@@ -1,0 +1,662 @@
+☀️ Light
+🌙 Dark
+⚫ B&W
+📄 View Source
+1DB Acquisition Discussion Mind Map
+Strategic M&A Analysis - Peak Six & Singular Advice Integration
+
+Investment advice and analysis provided by CHIP, Licensed Financial Consultant at 1st Discount Brokerage | askchip@1db.com | Securities offered through 1DB. Member FINRA/SIPC. This material is for informational purposes only and should not be construed as investment advice. Past performance does not guarantee future results.
+
+×
+Page Source Code
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1DB Acquisition Discussion Mind Map | CHIP Wealth Management</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/greycliff-cf');
+        
+        :root {
+            --aventurine: #005348;
+            --tiffany-blue: #0ABAB5;
+            --warm-sand: #F5F1EA;
+            --clay: #EBDCC8;
+            --taupe: #C4B5A8;
+            --deep-olive: #2F3B33;
+            --stone-gray: #E7E4DE;
+            --rich-earth: #3D2F1F;
+            --stone: #7A685A;
+            --terracotta: #CB694D;
+            
+            /* Light mode (default) */
+            --bg-primary: var(--warm-sand);
+            --bg-secondary: var(--stone-gray);
+            --text-primary: var(--deep-olive);
+            --text-secondary: var(--stone);
+            --accent: var(--aventurine);
+            --accent-hover: var(--tiffany-blue);
+            --border: var(--taupe);
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 83, 72, 0.1);
+        }
+        
+        body.dark-mode {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: var(--deep-olive);
+            --text-primary: var(--stone-gray);
+            --text-secondary: var(--taupe);
+            --accent: var(--tiffany-blue);
+            --accent-hover: #0DDDD5;
+            --border: var(--stone);
+            --card-bg: var(--rich-earth);
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+        
+        body.bw-mode {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f0f0f0;
+            --text-primary: #000000;
+            --text-secondary: #333333;
+            --accent: #000000;
+            --accent-hover: #333333;
+            --border: #999999;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --aventurine: #333333;
+            --tiffany-blue: #666666;
+            --warm-sand: #f5f5f5;
+            --clay: #e0e0e0;
+            --taupe: #cccccc;
+            --deep-olive: #000000;
+            --stone-gray: #f0f0f0;
+            --rich-earth: #333333;
+            --stone: #666666;
+            --terracotta: #999999;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Greycliff CF', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        
+        .controls button {
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+        
+        .controls button:hover {
+            background: var(--accent-hover);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
+            flex-grow: 1;
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        .mind-map {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .branch {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .branch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+        
+        .branch-header {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+        }
+        
+        .branch-header:hover {
+            background: linear-gradient(135deg, var(--accent-hover), var(--accent));
+        }
+        
+        .branch-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .branch-icon {
+            font-size: 1.5em;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+        
+        .branch.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        
+        .branch-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: var(--bg-secondary);
+        }
+        
+        .branch.expanded .branch-content {
+            max-height: 2000px;
+        }
+        
+        .sub-branches {
+            padding: 20px;
+        }
+        
+        .sub-branch {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+        
+        .sub-branch h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .sub-branch ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .sub-branch li {
+            padding: 5px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .sub-branch li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--terracotta);
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, transparent, var(--clay), transparent);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .value {
+            color: var(--terracotta);
+            font-weight: 600;
+        }
+        
+        footer {
+            background: var(--deep-olive);
+            color: var(--stone-gray);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+            box-shadow: 0 -4px 6px var(--shadow);
+        }
+        
+        footer p {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .source-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .source-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 90%;
+            max-height: 80%;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        
+        .source-content pre {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                top: 10px;
+                right: 10px;
+            }
+            
+            .controls button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .container {
+                padding: 80px 15px 100px;
+            }
+        }
+    </style>
+</head>
+<body class="bw-mode">
+    <div class="controls">
+        <button onclick="toggleTheme('light')">☀️ Light</button>
+        <button onclick="toggleTheme('dark')">🌙 Dark</button>
+        <button onclick="toggleTheme('bw')">⚫ B&amp;W</button>
+        <button onclick="showSource()">📄 View Source</button>
+    </div>
+    
+    <div class="container">
+        <h1>1DB Acquisition Discussion Mind Map</h1>
+        <p class="subtitle">Strategic M&amp;A Analysis - Peak Six &amp; Singular Advice Integration</p>
+        
+        <div class="mind-map">
+            <!-- Valuation & Financial Analysis -->
+            <div class="branch" onclick="toggleBranch(this)">
+                <div class="branch-header">
+                    <div class="branch-title">
+                        <span class="branch-icon">💰</span>
+                        <span>Valuation &amp; Financial Analysis</span>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="branch-content">
+                    <div class="sub-branches">
+                        <div class="sub-branch">
+                            <h3>Revenue Streams</h3>
+                            <ul>
+                                <li>Fee-based revenue: <span class="value">$1.07M</span> annually (Sept run rate)</li>
+                                <li>Net interest income: <span class="value">$650K</span> annually</li>
+                                <li>Commission revenue: Subject to <span class="value">~50%</span> payout ratio</li>
+                                <li>Total AUM: <span class="value">$650M</span> across platform</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Valuation Range</h3>
+                            <ul>
+                                <li>Initial range: <span class="value">$2.75M - $4M</span></li>
+                                <li>Based on multiple methodologies (revenue &amp; earnings)</li>
+                                <li>Higher multiples for fee-based vs commission revenue</li>
+                                <li>6x multiple on normalized earnings</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Risk Factors</h3>
+                            <ul>
+                                <li>Concentration risk: Top 10 accounts = <span class="value">15-20%</span> of assets</li>
+                                <li>Largest positions: Multiple <span class="value">$10M+</span> accounts</li>
+                                <li>Fee transition resistance from long-term clients</li>
+                                <li>Multiple branch locations to consolidate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Strategic Vision & Integration -->
+            <div class="branch" onclick="toggleBranch(this)">
+                <div class="branch-header">
+                    <div class="branch-title">
+                        <span class="branch-icon">🎯</span>
+                        <span>Strategic Vision &amp; Integration</span>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="branch-content">
+                    <div class="sub-branches">
+                        <div class="sub-branch">
+                            <h3>Singular Advice Platform</h3>
+                            <ul>
+                                <li>Direct-to-consumer wealth management focus</li>
+                                <li>Dual-track strategy: <span class="highlight">B2C + B2B</span></li>
+                                <li>Target: <span class="value">$1B</span> valuation potential</li>
+                                <li>AI-driven client interaction model</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Technology Integration</h3>
+                            <ul>
+                                <li>Consolidation on <span class="highlight">Apex clearing</span></li>
+                                <li>Challenge: Schwab/Fidelity relationships</li>
+                                <li>Client direct onboarding (CDO) implementation</li>
+                                <li>Tax efficiency focus with automation</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Product Expansion Roadmap</h3>
+                            <ul>
+                                <li>Banking integration via partners (MaxMyInterest)</li>
+                                <li>Tax services (April Tax software)</li>
+                                <li>Lending products (Better.com partnership)</li>
+                                <li>Insurance (starting with term life)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deal Structure & Terms -->
+            <div class="branch" onclick="toggleBranch(this)">
+                <div class="branch-header">
+                    <div class="branch-title">
+                        <span class="branch-icon">📋</span>
+                        <span>Deal Structure &amp; Terms</span>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="branch-content">
+                    <div class="sub-branches">
+                        <div class="sub-branch">
+                            <h3>Transaction Components</h3>
+                            <ul>
+                                <li>Upfront cash payment</li>
+                                <li>Potential earn-out based on performance</li>
+                                <li>Equity rollover option for Chip</li>
+                                <li>2-3 year transition period</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Post-Acquisition Roles</h3>
+                            <ul>
+                                <li>Chip: Chairman/strategic advisor role</li>
+                                <li>Focus on M&amp;A and rep acquisition</li>
+                                <li>West Palm team retention</li>
+                                <li>CEO replacement budgeted at <span class="value">$250K</span></li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Capital Structure</h3>
+                            <ul>
+                                <li>Initial capital: <span class="value">$1M</span> for growth</li>
+                                <li>Peak Six option for additional investment</li>
+                                <li>Low pre-money valuation with growth optionality</li>
+                                <li>Preferred shareholder structure considerations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Growth Opportunities -->
+            <div class="branch" onclick="toggleBranch(this)">
+                <div class="branch-header">
+                    <div class="branch-title">
+                        <span class="branch-icon">📈</span>
+                        <span>Growth Opportunities</span>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="branch-content">
+                    <div class="sub-branches">
+                        <div class="sub-branch">
+                            <h3>Acquisition Strategy</h3>
+                            <ul>
+                                <li>Target breakaway advisors from consolidating firms</li>
+                                <li>Focus on <span class="value">$20-30M</span> books</li>
+                                <li>Best opportunities during market downturns</li>
+                                <li>LPL, Cetera acquisition disruption opportunities</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>International Expansion</h3>
+                            <ul>
+                                <li>Europe: Focus on <span class="highlight">Scandinavian markets</span></li>
+                                <li>Australia: Identified opportunity</li>
+                                <li>Leverage technology platform globally</li>
+                                <li>"Shooting goldfish in a barrel" - Chip's view</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Revenue Model Evolution</h3>
+                            <ul>
+                                <li>Transition commission accounts to fee-based</li>
+                                <li>Scale pricing debate: <span class="value">50bps vs 100bps</span></li>
+                                <li>Banking/lending cross-sell opportunities</li>
+                                <li>Target: <span class="value">$10B AUM</span> = $10-20M revenue</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Investment Philosophy -->
+            <div class="branch" onclick="toggleBranch(this)">
+                <div class="branch-header">
+                    <div class="branch-title">
+                        <span class="branch-icon">🎓</span>
+                        <span>Investment Philosophy &amp; Operations</span>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="branch-content">
+                    <div class="sub-branches">
+                        <div class="sub-branch">
+                            <h3>Portfolio Management</h3>
+                            <ul>
+                                <li>Mike: Global equities, market-cap weighted</li>
+                                <li>Chip: Tactical allocation, momentum/factor consideration</li>
+                                <li>Tax efficiency as primary focus</li>
+                                <li>130/30 strategies for tax-loss harvesting</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Client Service Model</h3>
+                            <ul>
+                                <li>AI-driven financial advisor interactions</li>
+                                <li>Reduced human touchpoints for scalability</li>
+                                <li>Educational content delivery focus</li>
+                                <li>Client acceptance of AI interaction growing</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Fee Philosophy Insights</h3>
+                            <ul>
+                                <li>Chip's experience: Doubled fees from 50bps to 100bps</li>
+                                <li>Only <span class="value">10%</span> client pushback on fee increase</li>
+                                <li>Value perception more important than low fees</li>
+                                <li>Additional revenue streams reduce fee pressure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Relationships & Culture -->
+            <div class="branch" onclick="toggleBranch(this)">
+                <div class="branch-header">
+                    <div class="branch-title">
+                        <span class="branch-icon">🤝</span>
+                        <span>Relationships &amp; Cultural Fit</span>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="branch-content">
+                    <div class="sub-branches">
+                        <div class="sub-branch">
+                            <h3>Personal Dynamics</h3>
+                            <ul>
+                                <li>Strong rapport from hiking trip with Bill</li>
+                                <li>Mutual respect for analytical approach</li>
+                                <li>Both are "reality-based" decision makers</li>
+                                <li>Friendship commitment regardless of deal outcome</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Legacy Considerations</h3>
+                            <ul>
+                                <li>Chip wants 1DB legacy to continue evolving</li>
+                                <li>Interest in long-term equity stake</li>
+                                <li>Parallels to father's bank investment</li>
+                                <li>Building something "that lasts forever"</li>
+                            </ul>
+                        </div>
+                        <div class="sub-branch">
+                            <h3>Execution Speed</h3>
+                            <ul>
+                                <li>Mike praised for "lightning pace" analysis</li>
+                                <li>Action-oriented approach valued</li>
+                                <li>Deal document promised within week</li>
+                                <li>Follow-up meeting week of Nov 12th</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Investment advice and analysis provided by CHIP, Licensed Financial Consultant at 1st Discount Brokerage | askchip@1db.com | Securities offered through 1DB. Member FINRA/SIPC. This material is for informational purposes only and should not be construed as investment advice. Past performance does not guarantee future results.</p>
+    </footer>
+    
+    <div class="source-modal" id="sourceModal">
+        <div class="source-content">
+            <span class="close-modal" onclick="closeSource()">×</span>
+            <h2 style="margin-bottom: 20px; color: var(--accent);">Page Source Code</h2>
+            <pre id="sourceCode"></pre>
+        </div>
+    </div>
+    
+    <script>
+        function toggleBranch(element) {
+            element.classList.toggle('expanded');
+        }
+        
+        function toggleTheme(mode) {
+            document.body.className = '';
+            if (mode === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else if (mode === 'bw') {
+                document.body.classList.add('bw-mode');
+            }
+        }
+        
+        function showSource() {
+            const modal = document.getElementById('sourceModal');
+            const sourceCode = document.getElementById('sourceCode');
+            sourceCode.textContent = document.documentElement.outerHTML;
+            modal.style.display = 'flex';
+        }
+        
+        function closeSource() {
+            document.getElementById('sourceModal').style.display = 'none';
+        }
+        
+        // Auto-expand first branch on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstBranch = document.querySelector('.branch');
+            if (firstBranch) {
+                firstBranch.classList.add('expanded');
+            }
+        });
+        
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('sourceModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+
+</body></html>
